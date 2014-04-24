@@ -15,6 +15,11 @@ import javax.swing.JMenu;
 import javax.swing.JTree;
 import javax.swing.JSlider;
 import javax.swing.JProgressBar;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class IndicadoresUsuario extends JFrame {
 
@@ -48,15 +53,46 @@ public class IndicadoresUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public IndicadoresUsuario() {
+		setTitle("Indicadores ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 450);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnUsurio = new JMenu("Usu\u00E1rio");
+		menuBar.add(mnUsurio);
+		
+		JMenuItem mntmPerfil = new JMenuItem("Perfil");
+		mntmPerfil.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+		mnUsurio.add(mntmPerfil);
+		
+		JMenu mnManuteno = new JMenu("Manuten\u00E7\u00E3o");
+		menuBar.add(mnManuteno);
+		
+		JMenuItem mntmUsurio = new JMenuItem("Usu\u00E1rio");
+		mntmUsurio.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK));
+		mnManuteno.add(mntmUsurio);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Avalia\u00E7\u00E3o");
+		mntmNewMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+		mnManuteno.add(mntmNewMenuItem);
+		
+		JMenuItem mntmTreino = new JMenuItem("Treino");
+		mntmTreino.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_MASK));
+		mnManuteno.add(mntmTreino);
+		
+		JMenuItem mntmNvel = new JMenuItem("N\u00EDvel");
+		mntmNvel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		mnManuteno.add(mntmNvel);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(5, 65, 330, 336);
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_1.setBounds(5, 65, 330, 315);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -133,7 +169,8 @@ public class IndicadoresUsuario extends JFrame {
 		panel_1.add(label_3);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(345, 65, 329, 336);
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_2.setBounds(345, 65, 329, 315);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -165,5 +202,10 @@ public class IndicadoresUsuario extends JFrame {
 		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label.setBounds(23, 21, 143, 33);
 		contentPane.add(label);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBounds(5, 11, 669, 44);
+		contentPane.add(panel);
 	}
 }
