@@ -11,6 +11,17 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 public class ManutencaoUsuario extends JFrame {
 
@@ -23,6 +34,7 @@ public class ManutencaoUsuario extends JFrame {
 	private JPasswordField passwordField_1;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_6;
 
 	/**
 	 * Launch the application.
@@ -44,14 +56,45 @@ public class ManutencaoUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public ManutencaoUsuario() {
+		setTitle("Manuten\u00E7\u00E3o Usu\u00E1rio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 450);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnUsurio = new JMenu("Usu\u00E1rio");
+		menuBar.add(mnUsurio);
+		
+		JMenuItem mntmPerfil = new JMenuItem("Perfil");
+		mntmPerfil.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
+		mnUsurio.add(mntmPerfil);
+		
+		JMenu mnTreino = new JMenu("Manuten\u00E7\u00E3o");
+		menuBar.add(mnTreino);
+		
+		JMenuItem mntmUsurio = new JMenuItem("Usu\u00E1rio");
+		mntmUsurio.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK));
+		mnTreino.add(mntmUsurio);
+		
+		JMenuItem mntmAvaliao = new JMenuItem("Avalia\u00E7\u00E3o");
+		mntmAvaliao.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+		mnTreino.add(mntmAvaliao);
+		
+		JMenuItem mntmTreino = new JMenuItem("Treino");
+		mntmTreino.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_MASK));
+		mnTreino.add(mntmTreino);
+		
+		JMenuItem mntmNvel = new JMenuItem("N\u00EDvel");
+		mntmNvel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		mnTreino.add(mntmNvel);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -124,15 +167,15 @@ public class ManutencaoUsuario extends JFrame {
 		panel.add(passwordField_1);
 		
 		JButton button = new JButton("Salvar");
-		button.setBounds(439, 355, 87, 23);
+		button.setBounds(439, 347, 87, 23);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("Alterar");
-		button_1.setBounds(148, 355, 87, 23);
+		button_1.setBounds(148, 347, 87, 23);
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("Excluir");
-		button_2.setBounds(245, 355, 87, 23);
+		button_2.setBounds(245, 347, 87, 23);
 		panel.add(button_2);
 		
 		JLabel label_8 = new JLabel("e-mail:*");
@@ -149,6 +192,7 @@ public class ManutencaoUsuario extends JFrame {
 		panel.add(btnPesquisar);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(10, 45, 654, 53);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -163,7 +207,7 @@ public class ManutencaoUsuario extends JFrame {
 		panel_1.add(lblIdusuario);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(342, 355, 87, 23);
+		btnCancelar.setBounds(342, 347, 87, 23);
 		panel.add(btnCancelar);
 		
 		JButton button_3 = new JButton("<<");
@@ -181,5 +225,15 @@ public class ManutencaoUsuario extends JFrame {
 		JButton button_6 = new JButton(">");
 		button_6.setBounds(71, 11, 56, 23);
 		panel.add(button_6);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"IdUsuario", "Nome", "E-mail"}));
+		comboBox.setBounds(316, 12, 77, 20);
+		panel.add(comboBox);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(399, 12, 168, 20);
+		panel.add(textField_6);
+		textField_6.setColumns(10);
 	}
 }

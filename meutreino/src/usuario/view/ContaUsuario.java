@@ -48,6 +48,7 @@ public class ContaUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public ContaUsuario() {
+		setTitle("Conta Usu\u00E1rio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 450);
 		contentPane = new JPanel();
@@ -56,6 +57,7 @@ public class ContaUsuario extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setToolTipText("Conta");
 		panel_1.setBounds(10, 11, 664, 390);
 		contentPane.add(panel_1);
@@ -134,7 +136,7 @@ public class ContaUsuario extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnAdicionar.setBounds(565, 356, 89, 23);
+		btnAdicionar.setBounds(199, 318, 89, 23);
 		panel_1.add(btnAdicionar);
 		
 		JLabel lblEmail = new JLabel("e-mail:*");
