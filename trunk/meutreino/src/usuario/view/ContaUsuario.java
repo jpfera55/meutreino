@@ -63,89 +63,105 @@ public class ContaUsuario extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNome = new JLabel("Nome:*");
-		lblNome.setBounds(154, 83, 39, 14);
-		panel_1.add(lblNome);
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBounds(10, 317, 644, 62);
+		panel_1.add(panel);
+		panel.setLayout(null);
+		
+		JButton btnAdicionar = new JButton("Salvar");
+		btnAdicionar.setBounds(10, 21, 89, 23);
+		panel.add(btnAdicionar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(109, 21, 89, 23);
+		panel.add(btnCancelar);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_2.setBounds(10, 11, 644, 295);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(199, 80, 305, 20);
-		panel_1.add(textField_1);
+		textField_1.setBounds(199, 37, 305, 20);
+		panel_2.add(textField_1);
 		textField_1.setColumns(10);
 		
+		JLabel lblNome = new JLabel("Nome:*");
+		lblNome.setBounds(154, 40, 39, 14);
+		panel_2.add(lblNome);
+		
 		JLabel lblApelido = new JLabel("Apelido:*");
-		lblApelido.setBounds(148, 117, 45, 14);
-		panel_1.add(lblApelido);
+		lblApelido.setBounds(148, 74, 45, 14);
+		panel_2.add(lblApelido);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(199, 114, 305, 20);
-		panel_1.add(textField_2);
+		textField_2.setBounds(199, 71, 305, 20);
+		panel_2.add(textField_2);
 		textField_2.setColumns(10);
 		
+		JLabel lblEmail = new JLabel("e-mail:*");
+		lblEmail.setBounds(152, 111, 46, 14);
+		panel_2.add(lblEmail);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(199, 108, 305, 20);
+		panel_2.add(textField_6);
+		textField_6.setColumns(10);
+		
 		JLabel lblIdade = new JLabel("Idade:*");
-		lblIdade.setBounds(154, 185, 39, 14);
-		panel_1.add(lblIdade);
+		lblIdade.setBounds(154, 142, 39, 14);
+		panel_2.add(lblIdade);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(199, 182, 86, 20);
-		panel_1.add(textField_3);
+		textField_3.setBounds(199, 139, 86, 20);
+		panel_2.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JRadioButton rdbtnM = new JRadioButton("Masculino");
-		rdbtnM.setBounds(198, 213, 71, 23);
-		panel_1.add(rdbtnM);
-		
-		JLabel lblSexo = new JLabel("Sexo:*");
-		lblSexo.setBounds(154, 217, 39, 14);
-		panel_1.add(lblSexo);
-		
-		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
-		rdbtnFeminino.setBounds(279, 213, 71, 23);
-		panel_1.add(rdbtnFeminino);
-		
 		JLabel lblAltura = new JLabel("Altura:");
-		lblAltura.setBounds(347, 185, 46, 14);
-		panel_1.add(lblAltura);
+		lblAltura.setBounds(347, 142, 46, 14);
+		panel_2.add(lblAltura);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(399, 182, 86, 20);
-		panel_1.add(textField_4);
+		textField_4.setBounds(399, 139, 86, 20);
+		panel_2.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblM = new JLabel("m");
-		lblM.setBounds(495, 188, 17, 14);
-		panel_1.add(lblM);
+		lblM.setBounds(495, 145, 17, 14);
+		panel_2.add(lblM);
+		
+		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
+		rdbtnFeminino.setBounds(279, 170, 71, 23);
+		panel_2.add(rdbtnFeminino);
+		
+		JRadioButton rdbtnM = new JRadioButton("Masculino");
+		rdbtnM.setBounds(198, 170, 71, 23);
+		panel_2.add(rdbtnM);
+		
+		JLabel lblSexo = new JLabel("Sexo:*");
+		lblSexo.setBounds(154, 174, 39, 14);
+		panel_2.add(lblSexo);
 		
 		JLabel lblSenha = new JLabel("Senha:*");
-		lblSenha.setBounds(154, 246, 46, 14);
-		panel_1.add(lblSenha);
-		
-		JLabel lblRedigiteASenha = new JLabel("Redigite a Senha:*");
-		lblRedigiteASenha.setBounds(104, 277, 96, 14);
-		panel_1.add(lblRedigiteASenha);
+		lblSenha.setBounds(154, 203, 46, 14);
+		panel_2.add(lblSenha);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(199, 243, 147, 20);
-		panel_1.add(passwordField);
+		passwordField.setBounds(199, 200, 147, 20);
+		panel_2.add(passwordField);
+		
+		JLabel lblRedigiteASenha = new JLabel("Redigite a Senha:*");
+		lblRedigiteASenha.setBounds(104, 234, 96, 14);
+		panel_2.add(lblRedigiteASenha);
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(199, 274, 147, 20);
-		panel_1.add(passwordField_1);
-		
-		JButton btnAdicionar = new JButton("Salvar");
+		passwordField_1.setBounds(199, 231, 147, 20);
+		panel_2.add(passwordField_1);
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnAdicionar.setBounds(199, 318, 89, 23);
-		panel_1.add(btnAdicionar);
-		
-		JLabel lblEmail = new JLabel("e-mail:*");
-		lblEmail.setBounds(152, 154, 46, 14);
-		panel_1.add(lblEmail);
-		
-		textField_6 = new JTextField();
-		textField_6.setBounds(199, 151, 305, 20);
-		panel_1.add(textField_6);
-		textField_6.setColumns(10);
 	}
 }

@@ -98,94 +98,10 @@ public class ManutencaoUsuario extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("Nome:*");
-		label.setBounds(154, 112, 39, 14);
-		panel.add(label);
-		
 		textField = new JTextField();
 		textField.setBounds(199, 109, 305, 20);
 		textField.setColumns(10);
 		panel.add(textField);
-		
-		JLabel label_1 = new JLabel("Apelido:*");
-		label_1.setBounds(148, 146, 45, 14);
-		panel.add(label_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(199, 143, 305, 20);
-		textField_1.setColumns(10);
-		panel.add(textField_1);
-		
-		JLabel label_2 = new JLabel("Idade:*");
-		label_2.setBounds(154, 214, 39, 14);
-		panel.add(label_2);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(199, 211, 86, 20);
-		textField_2.setColumns(10);
-		panel.add(textField_2);
-		
-		JRadioButton radioButton = new JRadioButton("Masculino");
-		radioButton.setBounds(198, 242, 71, 23);
-		panel.add(radioButton);
-		
-		JLabel label_3 = new JLabel("Sexo:*");
-		label_3.setBounds(154, 246, 39, 14);
-		panel.add(label_3);
-		
-		JRadioButton radioButton_1 = new JRadioButton("Feminino");
-		radioButton_1.setBounds(279, 242, 71, 23);
-		panel.add(radioButton_1);
-		
-		JLabel label_4 = new JLabel("Altura:");
-		label_4.setBounds(347, 214, 46, 14);
-		panel.add(label_4);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(399, 211, 86, 20);
-		textField_3.setColumns(10);
-		panel.add(textField_3);
-		
-		JLabel label_5 = new JLabel("m");
-		label_5.setBounds(495, 217, 17, 14);
-		panel.add(label_5);
-		
-		JLabel label_6 = new JLabel("Senha:*");
-		label_6.setBounds(154, 275, 46, 14);
-		panel.add(label_6);
-		
-		JLabel label_7 = new JLabel("Redigite a Senha:*");
-		label_7.setBounds(104, 306, 96, 14);
-		panel.add(label_7);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(199, 272, 147, 20);
-		panel.add(passwordField);
-		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(199, 303, 147, 20);
-		panel.add(passwordField_1);
-		
-		JButton button = new JButton("Salvar");
-		button.setBounds(439, 347, 87, 23);
-		panel.add(button);
-		
-		JButton button_1 = new JButton("Alterar");
-		button_1.setBounds(148, 347, 87, 23);
-		panel.add(button_1);
-		
-		JButton button_2 = new JButton("Excluir");
-		button_2.setBounds(245, 347, 87, 23);
-		panel.add(button_2);
-		
-		JLabel label_8 = new JLabel("e-mail:*");
-		label_8.setBounds(152, 183, 46, 14);
-		panel.add(label_8);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(199, 180, 305, 20);
-		textField_4.setColumns(10);
-		panel.add(textField_4);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setBounds(577, 11, 87, 23);
@@ -206,15 +122,11 @@ public class ManutencaoUsuario extends JFrame {
 		lblIdusuario.setBounds(125, 17, 56, 14);
 		panel_1.add(lblIdusuario);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(342, 347, 87, 23);
-		panel.add(btnCancelar);
-		
 		JButton button_3 = new JButton("<<");
 		button_3.setBounds(10, 11, 56, 23);
 		panel.add(button_3);
 		
-		JButton button_4 = new JButton("<");
+		JButton button_4 = new JButton(">");
 		button_4.setBounds(137, 11, 56, 23);
 		panel.add(button_4);
 		
@@ -222,7 +134,7 @@ public class ManutencaoUsuario extends JFrame {
 		button_5.setBounds(199, 11, 56, 23);
 		panel.add(button_5);
 		
-		JButton button_6 = new JButton(">");
+		JButton button_6 = new JButton("<");
 		button_6.setBounds(71, 11, 56, 23);
 		panel.add(button_6);
 		
@@ -235,5 +147,105 @@ public class ManutencaoUsuario extends JFrame {
 		textField_6.setBounds(399, 12, 168, 20);
 		panel.add(textField_6);
 		textField_6.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_2.setBounds(10, 102, 654, 206);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel label_1 = new JLabel("Apelido:*");
+		label_1.setBounds(136, 36, 45, 14);
+		panel_2.add(label_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(191, 33, 305, 20);
+		panel_2.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel label_8 = new JLabel("e-mail:*");
+		label_8.setBounds(140, 64, 46, 14);
+		panel_2.add(label_8);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(191, 61, 305, 20);
+		panel_2.add(textField_4);
+		textField_4.setColumns(10);
+		
+		JLabel label_2 = new JLabel("Idade:*");
+		label_2.setBounds(140, 92, 46, 14);
+		panel_2.add(label_2);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(191, 89, 86, 20);
+		panel_2.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel label_4 = new JLabel("Altura:");
+		label_4.setBounds(347, 92, 46, 14);
+		panel_2.add(label_4);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(391, 92, 86, 20);
+		panel_2.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JLabel label_5 = new JLabel("m");
+		label_5.setBounds(479, 92, 17, 14);
+		panel_2.add(label_5);
+		
+		JLabel label = new JLabel("Nome:*");
+		label.setBounds(142, 11, 39, 14);
+		panel_2.add(label);
+		
+		JLabel label_3 = new JLabel("Sexo:*");
+		label_3.setBounds(146, 121, 39, 14);
+		panel_2.add(label_3);
+		
+		JRadioButton radioButton = new JRadioButton("Masculino");
+		radioButton.setBounds(190, 117, 71, 23);
+		panel_2.add(radioButton);
+		
+		JRadioButton radioButton_1 = new JRadioButton("Feminino");
+		radioButton_1.setBounds(271, 117, 71, 23);
+		panel_2.add(radioButton_1);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(191, 147, 147, 20);
+		panel_2.add(passwordField);
+		
+		JLabel label_6 = new JLabel("Senha:*");
+		label_6.setBounds(146, 150, 46, 14);
+		panel_2.add(label_6);
+		
+		JLabel label_7 = new JLabel("Redigite a Senha:*");
+		label_7.setBounds(96, 181, 96, 14);
+		panel_2.add(label_7);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(191, 178, 147, 20);
+		panel_2.add(passwordField_1);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_3.setBounds(10, 319, 654, 51);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JButton button_1 = new JButton("Alterar");
+		button_1.setBounds(10, 11, 87, 23);
+		panel_3.add(button_1);
+		
+		JButton button_2 = new JButton("Excluir");
+		button_2.setBounds(107, 11, 87, 23);
+		panel_3.add(button_2);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(204, 11, 87, 23);
+		panel_3.add(btnCancelar);
+		
+		JButton button = new JButton("Salvar");
+		button.setBounds(301, 11, 87, 23);
+		panel_3.add(button);
 	}
 }
