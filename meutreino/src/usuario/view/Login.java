@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Font;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class Login extends JFrame {
 
@@ -42,6 +44,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setTitle("MeuTreino");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 382, 229);
 		contentPane = new JPanel();
@@ -84,5 +87,10 @@ public class Login extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(116, 73, 134, 20);
 		contentPane.add(passwordField);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBounds(10, 11, 346, 169);
+		contentPane.add(panel);
 	}
 }
