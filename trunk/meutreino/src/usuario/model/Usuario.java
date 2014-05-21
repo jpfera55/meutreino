@@ -13,22 +13,26 @@ public class Usuario {
 	private String nome;
 	private String apelido;
 	private int    tipo;
-	private String login;
+	private String email;
 	private String senha;
 	private int    sexo;
-	private float  altura;
+	private int  altura;
 	private int    idade;
+	private int   nivel;
 	
-	public Usuario(String nome, String apelido,int tipo, String login,String senha,int sexo, float altura,int idade){
+	
+	public Usuario(int idUsuario,String nome, String apelido,int tipo, String email,String senha,int sexo, int altura,int idade, int nivel){
 		
-		this.nome    = nome;
-		this.apelido = apelido;
-		this.tipo	 = tipo;
-		this.login   = login;
-		this.senha   = senha;
-		this.sexo    = sexo;
-		this.altura  = altura;
-		this.idade   = idade;
+		this.idUsuario = idUsuario;
+		this.nome      = nome;
+		this.apelido   = apelido;
+		this.tipo	   = tipo;
+		this.email     = email;
+		this.senha     = senha;
+		this.sexo      = sexo;
+		this.altura    = altura;
+		this.idade     = idade;
+		this.nivel     = nivel;
 	
 	}
 
@@ -56,12 +60,12 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
@@ -84,7 +88,7 @@ public class Usuario {
 		return altura;
 	}
 
-	public void setAltura(float altura) {
+	public void setAltura(int altura) {
 		this.altura = altura;
 	}
 
@@ -98,6 +102,18 @@ public class Usuario {
 	
 	public int getIdUsuario() {
 		return idUsuario;
+	}
+	
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
 	}
 	
 	
