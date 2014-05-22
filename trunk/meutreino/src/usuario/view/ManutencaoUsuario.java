@@ -72,6 +72,8 @@ public class ManutencaoUsuario extends JFrame {
 
 	private String cAcao = "";
 	int iSexo = 0, iPerfil = 0;
+	String senha = "";
+	String RedSenha = "";
 	/**
 	 * Launch the application.
 	 */
@@ -354,10 +356,27 @@ public class ManutencaoUsuario extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				iSexo = rbMasculino.isSelected() ? 1 : 0;
-				iPerfil = rbComum.isSelected() ? 1 : 0;
+				 senha = new String(tpSenha.getPassword());
+				 RedSenha = new String(tpRedigite.getPassword());
+				 
+		         
+				if (senha.equals(RedSenha)){
 				
-				salvarRegistro(cAcao);					
+				
+					iSexo = rbMasculino.isSelected() ? 1 : 0;
+					//testando perfil
+					iPerfil = rbComum.isSelected() ? 1 : 0;
+					
+					salvarRegistro(cAcao);	
+					
+					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"O campo senha está diferente do campo Redigite sua Senha");
+				}
+				
+				
 				
 				
 			}
@@ -583,7 +602,7 @@ public class ManutencaoUsuario extends JFrame {
 							
 					
 				// Cria a instância de usuario
-				usuario = new Usuario(Integer.parseInt(tfIdUsuario.getText()), tfNome.getText(), tfApelido.getText(), iPerfil, tfEmail.getText(), "Senha", iSexo , Integer.parseInt(tfAltura.getText()) , Integer.parseInt(tfIdade.getText()), 0);
+				usuario = new Usuario(tfNome.getText(), tfApelido.getText(), iPerfil, tfEmail.getText(), senha, iSexo , Integer.parseInt(tfAltura.getText()) , Integer.parseInt(tfIdade.getText()), 0);
 				
 				fachada.usuarioCadastrar(usuario);
 				JOptionPane.showMessageDialog(null, "Usuário Cadastrado Com sucesso!");

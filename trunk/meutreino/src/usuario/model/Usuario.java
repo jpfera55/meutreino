@@ -21,9 +21,8 @@ public class Usuario {
 	private int   nivel;
 	
 	
-	public Usuario(int idUsuario,String nome, String apelido,int tipo, String email,String senha,int sexo, int altura,int idade, int nivel){
+	public Usuario(String nome, String apelido,int tipo, String email,String senha,int sexo, int altura,int idade, int nivel){
 		
-		this.idUsuario = idUsuario;
 		this.nome      = nome;
 		this.apelido   = apelido;
 		this.tipo	   = tipo;

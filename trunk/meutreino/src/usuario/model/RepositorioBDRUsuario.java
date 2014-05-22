@@ -84,7 +84,7 @@ public class RepositorioBDRUsuario implements IRepositoriousuario  {
         	rs = stmt.executeQuery();
         	
         	if (!rs.next()) throw new UsuarioNaoEncontradoException(idUsuario);
-            usuario = new Usuario(idUsuario, rs.getString("idUsuario"), rs.getString("nome"), idUsuario, sql, sql, idUsuario, idUsuario, idUsuario, idUsuario);
+            usuario = new Usuario(rs.getString("idUsuario"), rs.getString("nome"), idUsuario, sql, sql, idUsuario, idUsuario, idUsuario, idUsuario);
         } catch (SQLException e) {
 			throw new RepositorioException(e);
 		} finally {

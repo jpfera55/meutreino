@@ -48,6 +48,7 @@ public class ConnectionManager {
             try {
             	
             	connection = DriverManager.getConnection(conexao, usuario, senha);
+            	System.out.println("Conectado com sucesso");
             	            	
 	            //statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	    	} catch(SQLException e) {
