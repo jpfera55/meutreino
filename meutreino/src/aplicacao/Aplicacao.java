@@ -78,7 +78,7 @@ public class Aplicacao {
 						reSenha = in.next();
 						
 						// Cria a instância de usuario
-						usuario = new Usuario(idUsuario, nome, apelido, tipo, email, senha, sexo, altura, idade, nivel);
+						usuario = new Usuario(nome, apelido, tipo, email, senha, sexo, altura, idade, nivel);
 						
 						fachada.usuarioCadastrar(usuario);
 						System.out.println(" \n Cliente Cadastrado com Sucesso! \n");

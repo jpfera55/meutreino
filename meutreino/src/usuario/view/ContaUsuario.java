@@ -1,36 +1,52 @@
 package usuario.view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
+
+import usuario.controler.DadosInvalidosException;
+import usuario.model.Usuario;
+import usuario.model.UsuarioJaCadastradoException;
+import usuario.model.UsuarioNaoEncontradoException;
+import fachada.Fachada;
 
 public class ContaUsuario extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JTextField textField_6;
+	private JTextField tfNome;
+	private JTextField tfApelido;
+	private JTextField tfIdade;
+	private JTextField tfAltura;
+	private JPasswordField tpSenha;
+	private JPasswordField tpRedigite;
+	private JTextField tfEmail;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
-	 */
+	*/
+	String senha = "";
+	String RedSenha = "";
+	
+	int iSexo;
+	Fachada fachada = Fachada.getInstance();
+	ArrayList<Usuario> lista; // cria uma lista de Usuários
+	Usuario usuario; // Instancia um Usuário
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -83,85 +99,125 @@ public class ContaUsuario extends JFrame {
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(199, 37, 305, 20);
-		panel_2.add(textField_1);
-		textField_1.setColumns(10);
+		tfNome = new JTextField();
+		tfNome.setBounds(199, 37, 305, 20);
+		panel_2.add(tfNome);
+		tfNome.setColumns(10);
 		
 		JLabel lblNome = new JLabel("Nome:*");
-		lblNome.setBounds(154, 40, 39, 14);
+		lblNome.setBounds(134, 40, 59, 14);
 		panel_2.add(lblNome);
 		
 		JLabel lblApelido = new JLabel("Apelido:*");
-		lblApelido.setBounds(148, 74, 45, 14);
+		lblApelido.setBounds(130, 74, 59, 14);
 		panel_2.add(lblApelido);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(199, 71, 305, 20);
-		panel_2.add(textField_2);
-		textField_2.setColumns(10);
+		tfApelido = new JTextField();
+		tfApelido.setBounds(199, 71, 305, 20);
+		panel_2.add(tfApelido);
+		tfApelido.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("e-mail:*");
-		lblEmail.setBounds(152, 111, 46, 14);
+		lblEmail.setBounds(134, 111, 59, 14);
 		panel_2.add(lblEmail);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(199, 108, 305, 20);
-		panel_2.add(textField_6);
-		textField_6.setColumns(10);
+		tfEmail = new JTextField();
+		tfEmail.setBounds(199, 108, 305, 20);
+		panel_2.add(tfEmail);
+		tfEmail.setColumns(10);
 		
 		JLabel lblIdade = new JLabel("Idade:*");
-		lblIdade.setBounds(154, 142, 39, 14);
+		lblIdade.setBounds(134, 142, 59, 14);
 		panel_2.add(lblIdade);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(199, 139, 86, 20);
-		panel_2.add(textField_3);
-		textField_3.setColumns(10);
+		tfIdade = new JTextField();
+		tfIdade.setBounds(199, 139, 86, 20);
+		panel_2.add(tfIdade);
+		tfIdade.setColumns(10);
 		
 		JLabel lblAltura = new JLabel("Altura:");
 		lblAltura.setBounds(347, 142, 46, 14);
 		panel_2.add(lblAltura);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(399, 139, 86, 20);
-		panel_2.add(textField_4);
-		textField_4.setColumns(10);
+		tfAltura = new JTextField();
+		tfAltura.setBounds(399, 139, 86, 20);
+		panel_2.add(tfAltura);
+		tfAltura.setColumns(10);
 		
 		JLabel lblM = new JLabel("m");
 		lblM.setBounds(495, 145, 17, 14);
 		panel_2.add(lblM);
 		
-		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
-		rdbtnFeminino.setBounds(279, 170, 71, 23);
-		panel_2.add(rdbtnFeminino);
+		JRadioButton rdFeminino = new JRadioButton("Feminino");
+		buttonGroup.add(rdFeminino);
+		rdFeminino.setBounds(308, 170, 96, 23);
+		panel_2.add(rdFeminino);
 		
-		JRadioButton rdbtnM = new JRadioButton("Masculino");
-		rdbtnM.setBounds(198, 170, 71, 23);
-		panel_2.add(rdbtnM);
+		final JRadioButton rbMasculino = new JRadioButton("Masculino");
+		rbMasculino.setSelected(true);
+		buttonGroup.add(rbMasculino);
+		rbMasculino.setBounds(198, 170, 108, 23);
+		panel_2.add(rbMasculino);
 		
 		JLabel lblSexo = new JLabel("Sexo:*");
-		lblSexo.setBounds(154, 174, 39, 14);
+		lblSexo.setBounds(134, 174, 59, 14);
 		panel_2.add(lblSexo);
 		
 		JLabel lblSenha = new JLabel("Senha:*");
-		lblSenha.setBounds(154, 203, 46, 14);
+		lblSenha.setBounds(134, 203, 59, 14);
 		panel_2.add(lblSenha);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(199, 200, 147, 20);
-		panel_2.add(passwordField);
+		tpSenha = new JPasswordField();
+		tpSenha.setBounds(199, 200, 147, 20);
+		panel_2.add(tpSenha);
 		
 		JLabel lblRedigiteASenha = new JLabel("Redigite a Senha:*");
-		lblRedigiteASenha.setBounds(104, 234, 96, 14);
+		lblRedigiteASenha.setBounds(80, 234, 113, 14);
 		panel_2.add(lblRedigiteASenha);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(199, 231, 147, 20);
-		panel_2.add(passwordField_1);
+		tpRedigite = new JPasswordField();
+		tpRedigite.setBounds(199, 231, 147, 20);
+		panel_2.add(tpRedigite);
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				iSexo = rbMasculino.isSelected() ? 1 : 0;
+				
+				
+				 senha = new String(tpSenha.getPassword());
+				 RedSenha = new String(tpRedigite.getPassword());
+				 
+		         
+				if (senha.equals(RedSenha)){
+					salvarRegistro();
+					
+					dispose();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"O campo senha está diferente do campo Redigite sua Senha");
+				}
+
 			}
 		});
+	}
+	
+	
+	public void salvarRegistro(){
+		try{
+			
+				
+				// Cria a instância de usuario
+				usuario = new Usuario(tfNome.getText(), tfApelido.getText(), 0, tfEmail.getText(), senha, iSexo , Integer.parseInt(tfAltura.getText()) , Integer.parseInt(tfIdade.getText()), 0);
+				
+				fachada.usuarioCadastrar(usuario);
+				JOptionPane.showMessageDialog(null, "Usuário Cadastrado Com sucesso!");
+			
+		}catch (UsuarioJaCadastradoException e){
+			JOptionPane.showMessageDialog(null,e.getMessage());
+		}catch(DadosInvalidosException e){
+			JOptionPane.showMessageDialog(null,e.getMessage());
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null,e.getMessage());
+		}
 	}
 }
