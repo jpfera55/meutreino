@@ -11,6 +11,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
@@ -30,6 +31,7 @@ import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+
 import javax.swing.Box;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -38,22 +40,36 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+
+import fachada.Fachada;
+import treino.model.Treino;
 
 public class ManutencaoTreino2 extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField tfData;
+	private JTextField tfIntensidade;
+	private JTextField tfDuracao;
 	private JTable table;
-	private JTable table_1;
 	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField tfTreino;
+	private JTextField tfIdUsuario;
+	private JTextField tfMusc1;
+	private JTextField tfMusc2;
 
+	private String cAcao = "";
+	Treino treino;
+	Fachada fachada = Fachada.getInstance();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -90,55 +106,6 @@ public class ManutencaoTreino2 extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNome = new JLabel("Data:*");
-		lblNome.setBounds(122, 122, 39, 14);
-		panel_1.add(lblNome);
-		
-		
-		
-		JLabel lblApelido = new JLabel("Pontua\u00E7\u00E3o:*");
-		lblApelido.setBounds(100, 150, 71, 14);
-		panel_1.add(lblApelido);
-		
-		
-		
-		JLabel lblIdade = new JLabel("Dura\u00E7\u00E3o:*");
-		lblIdade.setBounds(417, 150, 71, 14);
-		panel_1.add(lblIdade);
-		
-	
-		JButton btnAdicionar = new JButton("Salvar");
-		btnAdicionar.setBounds(574, 378, 89, 23);
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		panel_1.add(btnAdicionar);
-		
-		JLabel lblEmail = new JLabel("Intensidade:*");
-		lblEmail.setBounds(398, 122, 73, 14);
-		panel_1.add(lblEmail);
-		
-		textField = new JTextField();
-		textField.setBounds(181, 119, 86, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(181, 147, 86, 20);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(481, 119, 86, 20);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(481, 147, 86, 20);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
-		
 		table = new JTable();
 		table.setBounds(115, 332, 475, -32);
 		panel_1.add(table);
@@ -174,19 +141,86 @@ public class ManutencaoTreino2 extends JFrame {
 		panel_1.add(button_4);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 58, 654, 53);
-		panel.setLayout(null);
+		panel.setBounds(10, 64, 654, 279);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.add(panel);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(171, 11, 86, 20);
-		panel.add(textField_5);
+		tfTreino = new JTextField();
+		tfTreino.setEnabled(false);
+		tfTreino.setBounds(279, 11, 86, 20);
+		tfTreino.setColumns(10);
 		
 		JLabel lblIdtreino = new JLabel("IdTreino:");
-		lblIdtreino.setBounds(115, 14, 46, 14);
+		lblIdtreino.setBounds(215, 14, 46, 14);
+		
+		tfData = new JTextField();
+		tfData.setEnabled(false);
+		tfData.setBounds(279, 67, 86, 20);
+		tfData.setColumns(10);
+		
+		JLabel lblNome = new JLabel("Data:*");
+		lblNome.setBounds(231, 70, 39, 14);
+		
+		JLabel lblEmail = new JLabel("Intensidade:*");
+		lblEmail.setBounds(196, 98, 73, 14);
+		
+		tfIntensidade = new JTextField();
+		tfIntensidade.setEnabled(false);
+		tfIntensidade.setBounds(279, 95, 86, 20);
+		tfIntensidade.setColumns(10);
+		
+		
+		
+		JLabel lblIdade = new JLabel("Dura\u00E7\u00E3o:*");
+		lblIdade.setBounds(216, 126, 65, 14);
+		
+		tfDuracao = new JTextField();
+		tfDuracao.setEnabled(false);
+		tfDuracao.setBounds(279, 123, 86, 20);
+		tfDuracao.setColumns(10);
+		
+		JLabel lblIdusuario = new JLabel("IdUsuario:*");
+		lblIdusuario.setBounds(206, 42, 69, 14);
+		
+		tfIdUsuario = new JTextField();
+		tfIdUsuario.setEnabled(false);
+		tfIdUsuario.setBounds(279, 39, 86, 20);
+		tfIdUsuario.setColumns(10);
+		
+		JLabel lblMusculo = new JLabel("Grupo Muscular 1:");
+		lblMusculo.setBounds(74, 196, 87, 14);
+		
+		tfMusc1 = new JTextField();
+		tfMusc1.setEnabled(false);
+		tfMusc1.setBounds(171, 193, 86, 20);
+		tfMusc1.setColumns(10);
+		
+		JLabel lblMusculo_1 = new JLabel("Grupo Muscular 2:");
+		lblMusculo_1.setBounds(333, 196, 87, 14);
+		
+		tfMusc2 = new JTextField();
+		tfMusc2.setEnabled(false);
+		tfMusc2.setBounds(438, 193, 86, 20);
+		tfMusc2.setColumns(10);
+		panel.setLayout(null);
 		panel.add(lblIdtreino);
+		panel.add(tfTreino);
+		panel.add(lblIdusuario);
+		panel.add(tfIdUsuario);
+		panel.add(lblMusculo_1);
+		panel.add(lblMusculo);
+		panel.add(lblNome);
+		panel.add(tfData);
+		panel.add(lblEmail);
+		panel.add(tfIntensidade);
+		panel.add(tfMusc2);
+		panel.add(tfMusc1);
+		panel.add(lblIdade);
+		panel.add(tfDuracao);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(74, 160, 514, 2);
+		panel.add(separator);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 684, 21);
@@ -217,72 +251,182 @@ public class ManutencaoTreino2 extends JFrame {
 		mntmNvel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		mnManuteno.add(mntmNvel);
 		
-		JButton button_5 = new JButton("Excluir");
-		button_5.setBounds(383, 378, 87, 23);
-		panel_1.add(button_5);
-		
-		JButton button_6 = new JButton("Cancelar");
-		button_6.setBounds(480, 378, 87, 23);
-		panel_1.add(button_6);
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_2.setBounds(10, 354, 648, 47);
+		panel_1.add(panel_2);
 		
 		JButton button_7 = new JButton("Alterar");
-		button_7.setBounds(286, 378, 87, 23);
-		panel_1.add(button_7);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 200, 664, 167);
-		panel_2.setToolTipText("");
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
+		JButton button_5 = new JButton("Excluir");
 		
-		table_1 = new JTable();
-		table_1.setBounds(19, 9, 626, 113);
-		panel_2.add(table_1);
-		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table_1.setToolTipText("Grupo Muscular\r\n");
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"id", "Nome"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+		JButton button_6 = new JButton("Cancelar");
+		
+	
+		JButton btnAdicionar = new JButton("Salvar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+						
+				salvarRegistro(cAcao);		
 			}
 		});
 		
-		JButton btnIncluir = new JButton("Incluir");
-		btnIncluir.setBounds(19, 133, 89, 23);
-		panel_2.add(btnIncluir);
+		JButton btnSair = new JButton("Sair");
 		
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.setBounds(116, 133, 89, 23);
-		panel_2.add(btnRemover);
-		
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setBounds(215, 133, 89, 23);
-		panel_2.add(btnAlterar);
-		
-		JLabel lblGrupoMuscular = new JLabel("Grupo Muscular");
-		lblGrupoMuscular.setBounds(20, 184, 120, 14);
-		lblGrupoMuscular.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		panel_1.add(lblGrupoMuscular);
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(551);
+		JButton btnNovo = new JButton("Novo");
+		btnNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			    limpaCampos();
+				
+				cAcao = "novo";
+				
+				habilitaCampos(cAcao);
+				
+			}
+		});
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnNovo)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(button_7, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(button_5, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(button_6, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addGap(7)
+					.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(56)
+					.addComponent(btnSair)
+					.addGap(19))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+								.addComponent(button_7)
+								.addComponent(btnNovo))
+							.addComponent(button_5)
+							.addComponent(button_6)
+							.addComponent(btnAdicionar))
+						.addComponent(btnSair))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel_2.linkSize(SwingConstants.HORIZONTAL, new Component[] {button_7, btnNovo});
+		gl_panel_2.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnAdicionar, btnSair});
+		panel_2.setLayout(gl_panel_2);
 		
 
 	}
+	
+public void habilitaCampos(String acao){
+		
+		if(acao == "novo"){
+		//Habilita os campos
+		tfIdUsuario.setEnabled(true);
+		tfData.setEnabled(true);
+		tfDuracao.setEnabled(true);
+		tfIntensidade.setEnabled(true);
+		tfMusc1.setEnabled(true);
+		tfMusc2.setEnabled(true);
+		
+		}
+		else if(acao == "alterar"){
+			
+			tfIdUsuario.setEnabled(true);
+			tfData.setEnabled(true);
+			tfDuracao.setEnabled(true);
+			tfIntensidade.setEnabled(true);
+			tfMusc1.setEnabled(true);
+			tfMusc2.setEnabled(true);
+			
+		}
+						
+		
+	}
+	
+	public void desabilitaCampos(){
+		
+		//Desabilita os campos
+		tfIdUsuario.setEnabled(false);
+		tfData.setEnabled(false);
+		tfDuracao.setEnabled(false);
+		tfIntensidade.setEnabled(false);
+		tfMusc1.setEnabled(false);
+		tfMusc2.setEnabled(false);
+		
+	}
+	
+	public void limpaCampos(){
+		
+		tfTreino.setText("");
+		tfIdUsuario.setText("");
+		tfData.setText("");
+		tfDuracao.setText("");
+		tfIntensidade.setText("");
+		tfMusc1.setText("");
+		tfMusc2.setText("");
+		
+		
+				
+	}
+	
+	public void salvarRegistro(String acao){
+		try{
+			
+					
+			if(cAcao == "novo"){
+			    // int idUsuario,String data, String intensidade, int pontuacao,  int duracao, String grup1, String grup2){			
+				// Cria a instância de trieno
+				treino = new Treino(Integer.parseInt(tfIdUsuario.getText()), tfData.getText(), tfIntensidade.getText(), 0,  Integer.parseInt(tfDuracao.getText()), tfMusc1.getText(), tfMusc2.getText());
+				
+				fachada.treinoCadastrar(treino);
+				JOptionPane.showMessageDialog(null, "Treino Cadastrado Com sucesso!");
+			}
+			/*else if(cAcao == "alterar"){
+				
+						
+				treino = fachada.treinoProcurar(Integer.parseInt(tfIdUsuario.getText()));
+				
+				//JOptionPane.showMessageDialog(null, usuario.getNome() + " " + usuario.getAltura());
+				
+				usuario.setIdUsuario(Integer.parseInt(tfIdUsuario.getText()));				
+				usuario.setNome(tfNome.getText());
+				usuario.setApelido(tfApelido.getText());
+				usuario.setEmail(tfEmail.getText());
+				usuario.setIdade(Integer.parseInt(tfIdade.getText()));
+				usuario.setAltura(Integer.parseInt(tfAltura.getText()));
+				//usuario.setSenha(apelido);
+				usuario.setTipo(1);
+				usuario.setSexo(1);
+								
+						
+				fachada.usuarioAtualizar(usuario);
+				JOptionPane.showMessageDialog(null,"Usuário atualizado com sucesso");
+				
+			}*/
+			
+			desabilitaCampos();
+			
+			
+		/*}catch (TreinoJaCadastradoException e){
+			JOptionPane.showMessageDialog(null,e.getMessage());
+			
+		}catch (UsuarioNaoEncontradoException e) {
+			JOptionPane.showMessageDialog(null,e.getMessage());
+		}catch(DadosInvalidosException e){
+			JOptionPane.showMessageDialog(null,e.getMessage());*/
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null,e.getMessage());
+		}
+	}
+	
+	
 }

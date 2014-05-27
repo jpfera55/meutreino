@@ -7,6 +7,9 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import treino.controler.ControladorTreino;
+import treino.controler.TrenioJaCadastradoException;
+import treino.model.Treino;
 import usuario.controler.ControladorUsuario;
 import usuario.controler.DadosInvalidosException;
 import usuario.model.RepositorioException;
@@ -23,10 +26,12 @@ public class Fachada {
 
 	private static Fachada instance = null;
 	private ControladorUsuario controladorUsuario;
+	private ControladorTreino controladorTreino;
 	//private ControladorPessoaJuridica controladorPessoaJuridica;
 	
-	Fachada() throws Exception {
+    Fachada() throws Exception {
 		this.controladorUsuario 		= new ControladorUsuario();
+		this.controladorTreino   		= new ControladorTreino();
 		//this.controladorPessoaJuridica 		= new ControladorPessoaJuridica();
 	}
 	
@@ -62,6 +67,16 @@ public class Fachada {
 	
 	public int ultimoRegistroId() throws RepositorioException, SQLException{
 		return this.controladorUsuario.ultimoRegistroId();
+	}
+	
+	public boolean acessoAoSistema(String email, String senha) throws RepositorioException, SQLException, UsuarioNaoEncontradoException{
+		return this.controladorUsuario.acessoAoSistema(email,senha);
+	}
+
+	public void treinoCadastrar(Treino treino) throws RepositorioException, SQLException, TrenioJaCadastradoException {
+		
+		this.controladorTreino.cadastrar(treino);
+		
 	}
 	
 }

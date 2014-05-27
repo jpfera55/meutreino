@@ -2,27 +2,44 @@ package usuario.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JPasswordField;
+
 import java.awt.Font;
+
 import javax.swing.border.LineBorder;
+
+import aplicacao.TelaPrincipal;
+import usuario.model.RepositorioException;
+import usuario.model.Usuario;
+import usuario.model.UsuarioNaoEncontradoException;
+import fachada.Fachada;
+
 import java.awt.Color;
+import java.sql.SQLException;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField tfEmail;
 	private JButton btnCriarConta;
 	private JLabel lblAbraSuaConta;
-	private JPasswordField passwordField;
+	private JPasswordField tpSenha;
+	
+	Fachada fachada = Fachada.getInstance();
+	Usuario usuario; // Instancia um Usuário
 
 	/**
 	 * Launch the application.
@@ -52,30 +69,17 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(116, 39, 134, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblLogin = new JLabel("Login :");
-		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblLogin.setBounds(65, 38, 46, 19);
-		contentPane.add(lblLogin);
-		
-		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblSenha.setBounds(65, 74, 46, 14);
-		contentPane.add(lblSenha);
-		
-		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
+		btnCriarConta = new JButton("Criar Conta");
+		btnCriarConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				ContaUsuario conta = new ContaUsuario();
+				// invoca a tela ContaUsuario
+				conta.setVisible(true);
+				
+				dispose();
 			}
 		});
-		btnOk.setBounds(260, 72, 46, 23);
-		contentPane.add(btnOk);
-		
-		btnCriarConta = new JButton("Criar Conta");
 		btnCriarConta.setBounds(102, 139, 164, 23);
 		contentPane.add(btnCriarConta);
 		
@@ -84,13 +88,64 @@ public class Login extends JFrame {
 		lblAbraSuaConta.setBounds(126, 104, 106, 24);
 		contentPane.add(lblAbraSuaConta);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(116, 73, 134, 20);
-		contentPane.add(passwordField);
-		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBounds(10, 11, 346, 169);
 		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		tfEmail = new JTextField();
+		tfEmail.setBounds(61, 32, 255, 20);
+		panel.add(tfEmail);
+		tfEmail.setColumns(10);
+		
+		tpSenha = new JPasswordField();
+		tpSenha.setBounds(61, 66, 178, 20);
+		panel.add(tpSenha);
+		
+		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha.setBounds(10, 67, 46, 14);
+		panel.add(lblSenha);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel lblLogin = new JLabel("Email:");
+		lblLogin.setBounds(10, 31, 46, 19);
+		panel.add(lblLogin);
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.setBounds(249, 65, 67, 23);
+		panel.add(btnOk);
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String senha = new String(tpSenha.getPassword());
+				String email = tfEmail.getText();
+				
+								
+				try {
+					if(fachada.acessoAoSistema(email, senha)){
+						
+						TelaPrincipal telaPrincipal = new TelaPrincipal();
+						telaPrincipal.setVisible(true);
+						dispose();
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Usuário ou senha Inválidos!");
+					}
+				} catch (RepositorioException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UsuarioNaoEncontradoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}
+		});
 	}
 }
