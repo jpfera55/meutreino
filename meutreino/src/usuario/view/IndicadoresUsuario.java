@@ -7,7 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,11 +19,17 @@ import javax.swing.JTree;
 import javax.swing.JSlider;
 import javax.swing.JProgressBar;
 import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.JSeparator;
+
+import usuario.model.Usuario;
 
 public class IndicadoresUsuario extends JFrame {
 
@@ -37,6 +46,9 @@ public class IndicadoresUsuario extends JFrame {
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JTextField textField_11;
+	
+	Usuario usuario; // Instancia um Usuário
+
 
 	/**
 	 * Launch the application.
@@ -57,6 +69,8 @@ public class IndicadoresUsuario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	
 	public IndicadoresUsuario() {
 		setTitle("Indicadores ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
